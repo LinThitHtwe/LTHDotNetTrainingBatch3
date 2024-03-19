@@ -99,7 +99,7 @@ namespace DotNetTrainningBatch3.ConsoleApp.AdoDotNetExamples
             connection.Close();
 
             string message = result > 0 ? "Successfully Created" : "Create Fail";
-            ; Console.Write(message);
+            Console.Write(message);
 
         }
 
