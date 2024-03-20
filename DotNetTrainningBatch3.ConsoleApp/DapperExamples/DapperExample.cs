@@ -36,7 +36,7 @@ namespace DotNetTrainningBatch3.ConsoleApp.DapperExamples
 
         }
 
-        public void GetById(int id) 
+        public void GetById(string id) 
         {
             string query = @"SELECT [id],[title],[author]
                            FROM [dotNetTrainningBatch3].[dbo].[Blog2]
@@ -58,7 +58,7 @@ namespace DotNetTrainningBatch3.ConsoleApp.DapperExamples
             Console.WriteLine("Author---" + blog.Author);
         }
 
-        public void Create(int id,string title,string author)
+        public void Create(string id,string title,string author)
         {
             string query = @"INSERT INTO [dbo].[Blog2]
                             ([id],[title],[author])
@@ -77,7 +77,7 @@ namespace DotNetTrainningBatch3.ConsoleApp.DapperExamples
             Console.Write(message);
         }
 
-        public void Update(int id, string title, string author) {
+        public void Update(string id, string title, string author) {
             string query = @"UPDATE [dbo].[Blog2]
                            SET [title] = @title
                            ,[author] = @author
