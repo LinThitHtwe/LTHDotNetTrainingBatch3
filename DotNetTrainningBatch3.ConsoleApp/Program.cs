@@ -1,6 +1,7 @@
 ﻿using DotNetTrainningBatch3.ConsoleApp.AdoDotNetExamples;
 using DotNetTrainningBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainningBatch3.ConsoleApp.EFCoreExamples;
+using DotNetTrainningBatch3.ConsoleApp.HttpClientExamples;
 
 //AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.GetAll();
@@ -17,5 +18,14 @@ using DotNetTrainningBatch3.ConsoleApp.EFCoreExamples;
 //dapperExample.Delete(3);
 //Console.WriteLine("-------------");
 
-EFCoreExample eFCoreExample = new EFCoreExample();
-eFCoreExample.Read();
+//EFCoreExample eFCoreExample = new EFCoreExample();
+//eFCoreExample.Read();
+
+Console.WriteLine("Waiting for api...");
+Console.ReadKey();
+
+HttpClientExample httpClientExample = new HttpClientExample();
+await httpClientExample.Run();
+
+
+

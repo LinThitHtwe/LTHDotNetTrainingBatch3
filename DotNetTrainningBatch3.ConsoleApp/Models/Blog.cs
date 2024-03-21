@@ -20,4 +20,12 @@ namespace DotNetTrainningBatch3.ConsoleApp.Models
         [Column("author")]
         public string Author { get; set; }
     }
+
+    public class JsonPlaceholderModel
+    {
+        public int userId { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
+        public string body { get; set; }
+    }
 }
