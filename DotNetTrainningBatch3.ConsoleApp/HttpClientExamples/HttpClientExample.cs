@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace DotNetTrainningBatch3.ConsoleApp.HttpClientExamples
        public async Task Run()
        {
             await Read();
-            await ReadJsonPlaceholder();
+            //await ReadJsonPlaceholder();
        }
 
        private async Task Read()
@@ -24,12 +25,6 @@ namespace DotNetTrainningBatch3.ConsoleApp.HttpClientExamples
             if(response.IsSuccessStatusCode)
             {
                 string jsonString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(jsonString);
-                Console.WriteLine("-----------");
-
-                //JsonConvert.SerializeObject() // C# object to JSON
-                //JsonConvert.DeserializeObject() // JSON to C# object
-
                 List<Blog> blogs = JsonConvert.DeserializeObject<List<Blog>>(jsonString)!;
                 foreach(Blog blog in blogs)
                 {
@@ -39,31 +34,91 @@ namespace DotNetTrainningBatch3.ConsoleApp.HttpClientExamples
                 }
             
             }
-            //Console.WriteLine(response.IsSuccessStatusCode);
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
        }
 
-        private async Task ReadJsonPlaceholder()
+        private async Task GetById(string id)
         {
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("https://jsonplaceholder.typicode.com/posts");
+            string url = $"https://localhost:7131/api/Blog/{id}";
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                string jsonStr = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(jsonStr);
-
-                //JsonConvert.SerializeObject() // C# object to JSON
-                //JsonConvert.DeserializeObject() // JSON to C# object
-
-                List<JsonPlaceholderModel> lst = JsonConvert.DeserializeObject<List<JsonPlaceholderModel>>(jsonStr)!;
-
-                foreach (JsonPlaceholderModel item in lst)
-                {
-                    Console.WriteLine(item.title);
-                    Console.WriteLine(item.body);
-                    Console.WriteLine(item.userId);
-                    Console.WriteLine(item.id);
-                }
+                string jsonString = await response.Content.ReadAsStringAsync();
+                Blog blog = JsonConvert.DeserializeObject<Blog>(jsonString)!;
+                Console.WriteLine(blog.Title);
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
             }
         }
+
+        private async Task Create(string title,string id,string author)
+        {
+            Blog blog = new Blog()
+            {
+                Title = title,
+                Author = author,
+                Id = id,
+            };
+            string jsonBlog = JsonConvert.SerializeObject(blog);
+            HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, MediaTypeNames.Application.Json);
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.PostAsync($"https://localhost:7131/api/Blog", httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
+        
+        public async Task Update(string id, string title, string author)
+        {
+            Blog blog = new Blog()
+            {
+                Title = title,
+                Author = author,
+                Id = id,
+            };
+            string jsonBlog = JsonConvert.SerializeObject(blog);
+            HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, MediaTypeNames.Application.Json);
+            string url = $"https://localhost:7131/api/Blog/{id}";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.PutAsync(url, httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
+
+        private async Task Delete(int id)
+        {
+            string url = $"https://localhost:7131/api/Blog/{id}";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+            }
+            else
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
+
     }
 }
