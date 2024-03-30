@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainningBatch3.ConsoleApp", "DotNetTrainningBatch3.ConsoleApp\DotNetTrainningBatch3.ConsoleApp.csproj", "{971936FA-D750-478B-AF46-A64464089BB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainningBatch3.WebApi", "DotNetTrainningBatch3.WebApi\DotNetTrainningBatch3.WebApi.csproj", "{5B31CE0B-447E-4A52-BC2B-54B822B78C7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainningBatch3.WebApi", "DotNetTrainningBatch3.WebApi\DotNetTrainningBatch3.WebApi.csproj", "{5B31CE0B-447E-4A52-BC2B-54B822B78C7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainningBatch3.BirdWebApi", "DotNetTrainningBatch3.BirdWebApi\DotNetTrainningBatch3.BirdWebApi.csproj", "{C94D7380-35C7-4E34-8F61-8B23303B7310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5B31CE0B-447E-4A52-BC2B-54B822B78C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B31CE0B-447E-4A52-BC2B-54B822B78C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B31CE0B-447E-4A52-BC2B-54B822B78C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94D7380-35C7-4E34-8F61-8B23303B7310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94D7380-35C7-4E34-8F61-8B23303B7310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94D7380-35C7-4E34-8F61-8B23303B7310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94D7380-35C7-4E34-8F61-8B23303B7310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

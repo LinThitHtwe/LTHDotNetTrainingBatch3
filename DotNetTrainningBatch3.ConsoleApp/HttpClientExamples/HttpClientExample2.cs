@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotNetTrainingBatch3.ConsoleApp.HttpClientExamples
+namespace DotNetTrainningBatch3.ConsoleApp.HttpClientExamples
 {
     public class HttpClientExample2
     {
