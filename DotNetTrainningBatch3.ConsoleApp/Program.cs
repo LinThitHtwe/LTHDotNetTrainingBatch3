@@ -2,6 +2,7 @@
 using DotNetTrainningBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainningBatch3.ConsoleApp.EFCoreExamples;
 using DotNetTrainningBatch3.ConsoleApp.HttpClientExamples;
+using DotNetTrainningBatch3.ConsoleApp.RestClientExamples;
 
 //AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.GetAll();
@@ -24,8 +25,11 @@ using DotNetTrainningBatch3.ConsoleApp.HttpClientExamples;
 Console.WriteLine("Waiting for api...");
 Console.ReadKey();
 
-HttpClientExample httpClientExample = new HttpClientExample();
-await httpClientExample.Run();
+//HttpClientExample httpClientExample = new HttpClientExample();
+//await httpClientExample.Run();
+
+RestClientExample restClientExample = new RestClientExample();
+await restClientExample.Run();
 
 
 
