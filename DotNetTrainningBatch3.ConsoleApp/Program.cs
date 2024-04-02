@@ -2,6 +2,7 @@
 using DotNetTrainningBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainningBatch3.ConsoleApp.EFCoreExamples;
 using DotNetTrainningBatch3.ConsoleApp.HttpClientExamples;
+using DotNetTrainningBatch3.ConsoleApp.RefitExamples;
 using DotNetTrainningBatch3.ConsoleApp.RestClientExamples;
 
 //AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
@@ -28,8 +29,10 @@ Console.ReadKey();
 //HttpClientExample httpClientExample = new HttpClientExample();
 //await httpClientExample.Run();
 
-RestClientExample restClientExample = new RestClientExample();
-await restClientExample.Run();
+//RestClientExample restClientExample = new RestClientExample();
+//await restClientExample.Run();
 
+RefitExample refitExample = new RefitExample();
+await refitExample.Run();
 
 
