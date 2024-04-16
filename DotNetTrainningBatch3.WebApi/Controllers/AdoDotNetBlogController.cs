@@ -22,7 +22,7 @@ namespace DotNetTrainningBatch3.WebApi.Controllers
 
 
         [HttpGet]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(200,Type = typeof(List<Blog>))]
         public IActionResult GetAllBlogs()
         {
 
@@ -54,7 +54,7 @@ namespace DotNetTrainningBatch3.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(200, Type = typeof(Blog))]
         [ProducesResponseType(404)]
         public IActionResult GetById(string id)
         {
@@ -84,6 +84,120 @@ namespace DotNetTrainningBatch3.WebApi.Controllers
             };
 
             return Ok(blog);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(200,Type = typeof(string))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(424)]
+        [ProducesResponseType(500)]
+        public IActionResult CreateBlog(Blog blog)
+        {
+            if(blog is null)
+            {
+                return BadRequest();
+            }
+
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            sqlConnection.Open();
+
+            string query = @"INSERT INTO Blog2]
+                            ([id],[title],[author])
+                            VALUES 
+                            (@id,@title,@author)";
+
+            SqlCommand sqlCommand = new(query,sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@id",blog.Id);
+            sqlCommand.Parameters.AddWithValue("@title", blog.Title);
+            sqlCommand.Parameters.AddWithValue("@author", blog.Author);
+
+            int result = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+            if(result < 1) 
+            {
+                return StatusCode(424,"Create Fail");
+            }
+           
+            return Ok("Successfully Created !!");
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(424)]
+        public IActionResult Update(string id,Blog blog)
+        {
+
+            if(blog is null)
+            {
+                return BadRequest();
+            }
+
+            var isBlogExist = GetById(id);
+            if (isBlogExist.GetType() == typeof(NotFoundResult))
+            {
+                return NotFound();
+            }
+
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            sqlConnection.Open();
+
+            string query = @"UPDATE Blog2
+                           SET [title] = @title
+                           ,[author] = @author
+                           WHERE id = @id";
+
+            SqlCommand sqlCommand = new(query,sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@id", id);
+            sqlCommand.Parameters.AddWithValue("@title", blog.Title);
+            sqlCommand.Parameters.AddWithValue("@author", blog.Author);
+
+            int result = sqlCommand.ExecuteNonQuery();
+            
+            sqlConnection.Close();
+
+            if(result <1)
+            {
+                return StatusCode(424,"Update Fail");
+            }
+
+            return Ok("Successfully Updated");
+        }
+        
+
+        [HttpDelete]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(424)]
+        public IActionResult Delete(string id)
+        {
+
+            var isBlogExist = GetById(id);
+            if (isBlogExist.GetType() == typeof(NotFoundResult))
+            {
+                return NotFound();
+            }
+
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            sqlConnection.Open();
+
+            string query = @"DELETE FROM Blog2
+                           WHERE id = @id";
+            SqlCommand sqlCommand = new(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@id", id);
+
+            int result = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            if(result < 1)
+            {
+                return StatusCode(424, "Delete Fail");
+            }
+
+            return Ok("Successfully Deleted");
         }
     }
 }
