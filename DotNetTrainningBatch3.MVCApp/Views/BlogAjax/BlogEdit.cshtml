@@ -1,0 +1,61 @@
+﻿@model BlogModel
+@{
+
+}
+<div class="mb-3">
+    
+    <label class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="Title" value="@Model.Title" />
+
+    <label class="form-label">Author</label>
+    <input type="text" class="form-control" id="author" name="Author" value="@Model.Author" />
+</div>
+
+<a href="/blog" class="btn btn-secondary">Back</a>
+<button type="button" class="btn btn-primary" id="blogUpdateBtn">Update</button>
+
+@section scripts {
+    <script>
+        $('#blogUpdateBtn').click(function () {
+            const Title = $('#title').val();
+            const Author = $('#author').val();
+
+            const requestModel = {Title, Author};
+
+            $.ajax({
+                url: '/blogAjax/update/' + @Model.Id,
+                data: { requestBlog: requestModel },
+                type: "PUT",
+                dataType: "json",
+                success: function (result) {
+                    if (result.isSuccess) {
+                        Swal.fire({
+                            title: "Success",
+                            text: result.message,
+                            icon: "success",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/blogAjax";
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: result.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (errorMessage) {
+                    console.log(errorMessage);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Something went wrong",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    </script>
+}

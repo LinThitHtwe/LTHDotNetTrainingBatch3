@@ -3,15 +3,15 @@
 
 }
 <form action="/blog/update/@Model.Id" method="post">
-<div class="mb-3">
-    
-    <label class="form-label">Title</label>
-    <input type="text" class="form-control" id="title" name="Title" value="@Model.Title" />
+    <div class="mb-3">
 
-    <label class="form-label">Author</label>
-    <input type="text" class="form-control" id="author" name="Author" value="@Model.Author" />
-</div>
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="Title" value="@Model.Title" />
 
-<a href="/blog" class="btn btn-secondary">Back</a>
-<button type="submit" class="btn btn-primary">Update</button>
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" id="author" name="Author" value="@Model.Author" />
+    </div>
+
+    <a href="/blog" class="btn btn-secondary">Back</a>
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>

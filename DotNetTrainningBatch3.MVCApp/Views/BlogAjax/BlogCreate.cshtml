@@ -1,0 +1,64 @@
+﻿    <div class="mb-3">
+        <h1>Heallo</h1>
+        <label class="form-label">Id</label>
+        <input type="text" class="form-control" id="id" />
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" />
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" id="author" />
+    </div>
+
+    <a href="/blogAjax" class="btn btn-secondary">Back</a>
+
+    <button class="btn btn-primary" type="button" id="blogSave">Save</button>
+
+@section scripts {
+    <script>
+        $('#blogSave').click(function () {
+
+            const Id = $('#id').val();
+            const Title = $('#title').val();
+            const Author = $('#author').val();
+
+            const requestModel = {
+                Id, Title, Author
+            };
+            console.log(requestModel);
+
+            $.ajax({
+                url: '/blogAjax/create',
+                data: { blogModel: requestModel },
+                type: "POST",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    if (result.isSuccess) {
+                        Swal.fire({
+                            title: "Success",
+                            text: result.message,
+                            icon: "success",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/blogAjax";
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: result.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (errorMessage) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Something went wrong",
+                        icon: "error"
+                    });
+                }
+            });
+        });        
+    </script>
+}

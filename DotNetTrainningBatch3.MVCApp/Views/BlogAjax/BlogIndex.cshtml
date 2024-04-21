@@ -1,0 +1,92 @@
+﻿@model List<BlogModel>
+@{
+    ViewData["Title"] = "Blogs";
+    int count = 0;
+}
+
+<h4>Blogs</h4>
+<a href="/blogajax/create" class="btn btn-primary">Create Blog</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+             <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BlogModel blog in Model)
+        {
+            <tr>
+                <th scope="row">@(++count)</th>
+                <td scope="row">@blog.Id</td>
+                <td scope="row">@blog.Title</td>
+                <td scope="row">@blog.Author</td>
+                <td><a href="/blogAjax/edit/@blog.Id" class="btn btn-secondary">Edit</a>
+                    <button class="btn btn-danger btn-delete" data-blog-id="@blog.Id"
+                            data-id="@blog.Id">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $('.btn-delete').click(function () {
+            let id = $(this).data('blog-id');
+            console.log("id",id);
+            Swal.fire({
+                title: "Confirm",
+                text: "Do you want to delete this?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteBlog(id);
+                }
+            });
+        })
+
+        function deleteBlog(id) {
+            $.ajax({
+                url: "/BlogAjax/delete/" + id,
+                type: "DELETE",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    if (result.isSuccess) {
+                        Swal.fire({
+                            title: "Success.",
+                            text: result.message,
+                            icon: "success",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/BlogAjax";
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: result.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (errormessage) {
+                    console.log(errormessage.responseText);
+                }
+            });
+        }
+    </script>
+}

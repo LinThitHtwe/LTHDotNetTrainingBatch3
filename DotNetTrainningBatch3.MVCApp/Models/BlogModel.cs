@@ -14,4 +14,10 @@ namespace DotNetTrainningBatch3.MVCApp.Models
         [Column("author")]
         public string Author { get; set; }
     }
+
+    public class BlogResponseModel 
+    {
+        public Boolean IsSuccess { get; set; }
+        public string Message { get; set; }
+    }
 }
