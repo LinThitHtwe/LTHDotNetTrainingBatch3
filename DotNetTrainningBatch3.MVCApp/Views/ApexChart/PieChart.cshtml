@@ -1,0 +1,38 @@
+﻿@model ApexChartResponseModel
+@{
+
+    List<int> responseSeries = Model.Series;
+    List<string> responseLabels = Model.Labels;
+}
+<div id="chart"> </div>
+
+@section scripts {
+
+    <script>
+        const series = @Html.Raw(JsonConvert.SerializeObject(responseSeries));
+        const labels = @Html.Raw(JsonConvert.SerializeObject(responseLabels));
+
+        const options = {
+            series,
+            chart: {
+                width: 300,
+                type: 'pie',
+            },
+            labels,
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: "bottom",
+                    }
+                }
+            }]
+        };
+
+        const chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}
