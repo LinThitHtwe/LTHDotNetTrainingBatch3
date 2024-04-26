@@ -22,6 +22,27 @@ namespace DotNetTrainningBatch3.WebApi.Controllers
             return Ok(blogs);
         }
 
+        [HttpGet("{pageNo}/{pageSize}")]
+        public IActionResult GetPaginatedBlogs(int pageNo, int pageSize)
+        {
+            List<Blog> blogs = _appDbContext.Blogs
+                                .Skip((pageNo - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            int rowCount = _appDbContext.Blogs.Count();
+            int pageCount = (int)Math.Ceiling((double)rowCount / pageSize);
+
+            BlogPaginatedResponseModel responseModel = new()
+            {
+                Data = blogs,
+                PageCount = pageCount,
+                PageNo = pageNo,
+                PageSize = pageSize,
+            };
+            return Ok(responseModel);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetBlogById(string id)
         {
@@ -43,10 +64,10 @@ namespace DotNetTrainningBatch3.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateBlog(string id,Blog blog)
+        public IActionResult UpdateBlog(string id, Blog blog)
         {
             Blog existingBlog = _appDbContext.Blogs.FirstOrDefault(blog => blog.Id == id);
-            if(existingBlog is null)
+            if (existingBlog is null)
             {
                 return NotFound();
             }

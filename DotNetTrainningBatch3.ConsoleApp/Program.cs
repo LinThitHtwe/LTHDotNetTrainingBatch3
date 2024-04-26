@@ -24,7 +24,7 @@ using DotNetTrainningBatch3.ConsoleApp.RestClientExamples;
 //eFCoreExample.Read();
 
 Console.WriteLine("Waiting for api...");
-Console.ReadKey();
+
 
 //HttpClientExample httpClientExample = new HttpClientExample();
 //await httpClientExample.Run();
@@ -32,7 +32,26 @@ Console.ReadKey();
 //RestClientExample restClientExample = new RestClientExample();
 //await restClientExample.Run();
 
-RefitExample refitExample = new RefitExample();
-await refitExample.Run();
+//RefitExample refitExample = new RefitExample();
+//await refitExample.Run();
+
+//EFCoreExample eFCoreExample = new();
+//eFCoreExample.Generate(100);
+
+int pageSize = 3;
+AppDbContext appDbContext = new();
+int rowCount = appDbContext.Blogs.Count();
+
+int pageCount = rowCount /pageSize;
+Console.WriteLine($"Current PageCount {pageCount}");
+
+if(rowCount % pageSize > 0)
+{
+    pageCount++;
+}
+
+Console.WriteLine($"Final PageCount {pageCount}");
+
+Console.ReadKey();
 
 
