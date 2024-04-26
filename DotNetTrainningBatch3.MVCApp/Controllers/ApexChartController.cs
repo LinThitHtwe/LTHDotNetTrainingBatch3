@@ -40,5 +40,17 @@ namespace DotNetTrainningBatch3.MVCApp.Controllers
 
             return View(dashedLineChartResponse);
         }
+
+        public IActionResult RadarChart()
+        {
+            AppDbContext context = new();
+            var radarDataList = context.Radars.ToList();
+            ApexChartResponseModel responseModel = new()
+            {
+                Series = radarDataList.Select(x => x.Series).ToList(),
+                Labels = radarDataList.Select(x => x.Month).ToList()
+            };
+            return View(responseModel);
+        }
     }
 }

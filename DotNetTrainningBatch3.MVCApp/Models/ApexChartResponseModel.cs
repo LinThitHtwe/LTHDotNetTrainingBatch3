@@ -1,4 +1,5 @@
-﻿namespace DotNetTrainningBatch3.MVCApp.Models
+﻿
+namespace DotNetTrainningBatch3.MVCApp.Models
 {
     public class ApexChartResponseModel
     {
