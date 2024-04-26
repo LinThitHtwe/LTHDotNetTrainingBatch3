@@ -25,5 +25,7 @@ namespace DotNetTrainningBatch3.MVCApp
         }
 
         public DbSet<BlogModel> Blogs { get; set; }
+    
+        public DbSet<PageStatistic> PageStatistics { get; set; }
     }
 }

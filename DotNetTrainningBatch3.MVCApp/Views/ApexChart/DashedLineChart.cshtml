@@ -1,0 +1,87 @@
+﻿@model DashedLineChartResponseModel
+@{
+    var series = Model.Series;
+    var labels = Model.Labels;
+}
+
+<div id="chart"></div>
+@section scripts
+{
+    <script>
+      //  console.log("JSONConvert--", @(JsonConvert.SerializeObject(series)));
+        const series = @Html.Raw(JsonConvert.SerializeObject(series));
+        const labels = @Html.Raw(JsonConvert.SerializeObject(labels));
+        console.log("series", series);
+        console.log("labels", labels);
+        console.log("series, data", series[0].Data);
+
+
+        var options = {
+            series,
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: [5, 7, 5],
+                curve: 'straight',
+                dashArray: [0, 8, 5]
+            },
+            title: {
+                text: 'Page Statistics',
+                align: 'left'
+            },
+            legend: {
+                tooltipHoverFormatter: function (val, opts) {
+                    return val + ' - <strong>' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + '</strong>'
+                }
+            },
+            markers: {
+                size: 0,
+                hover: {
+                    sizeOffset: 6
+                }
+            },
+            xaxis: {
+                categories: labels
+            },
+            tooltip: {
+                y: [
+                    {
+                        title: {
+                            formatter: function (val) {
+                                return val + " (mins)"
+                            }
+                        }
+                    },
+                    {
+                        title: {
+                            formatter: function (val) {
+                                return val + " per session"
+                            }
+                        }
+                    },
+                    {
+                        title: {
+                            formatter: function (val) {
+                                return val;
+                            }
+                        }
+                    }
+                ]
+            },
+            grid: {
+                borderColor: '#f1f1f1',
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}

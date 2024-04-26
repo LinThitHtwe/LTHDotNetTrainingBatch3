@@ -11,7 +11,7 @@
     <script>
         const series = @Html.Raw(JsonConvert.SerializeObject(responseSeries));
         const labels = @Html.Raw(JsonConvert.SerializeObject(responseLabels));
-
+        console.log("series--pie--", series);
         const options = {
             series,
             chart: {
