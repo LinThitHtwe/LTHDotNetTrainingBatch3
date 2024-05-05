@@ -11,9 +11,9 @@ namespace DotNetTrainningBatch3.MVCApp.Controllers
 
         private readonly AppDbContext _appDbContext;
 
-        public BlogController()
+        public BlogController(AppDbContext appDbContext)
         {
-            _appDbContext = new AppDbContext();
+            _appDbContext = appDbContext;
         }
         [ActionName("Index")]
         public IActionResult BlogIndex()

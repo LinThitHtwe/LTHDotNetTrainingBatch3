@@ -11,18 +11,22 @@ namespace DotNetTrainningBatch3.MVCApp
 {
     public class AppDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
-            {
-                DataSource = "DESKTOP-IF45PH3\\SQLEXPRESS",
-                InitialCatalog = "dotNetTrainningBatch3",
-                UserID = "sa",
-                Password = "root",
-                TrustServerCertificate = true
-            };
-            optionsBuilder.UseSqlServer(sqlConnectionStringBuilder.ConnectionString);
+
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //    {
+        //        DataSource = "DESKTOP-IF45PH3\\SQLEXPRESS",
+        //        InitialCatalog = "dotNetTrainningBatch3",
+        //        UserID = "sa",
+        //        Password = "root",
+        //        TrustServerCertificate = true
+        //    };
+        //    optionsBuilder.UseSqlServer(sqlConnectionStringBuilder.ConnectionString);
+        //}
 
         public DbSet<BlogModel> Blogs { get; set; }
         public DbSet<PageStatistic> PageStatistics { get; set; }

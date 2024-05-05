@@ -5,6 +5,13 @@ namespace DotNetTrainningBatch3.MVCApp.Controllers
 {
     public class ApexChartController : Controller
     {
+        private readonly AppDbContext _appDbContext;
+
+        public ApexChartController(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+
         public IActionResult PieChart()
         {
             ApexChartResponseModel apexChartResponseModel = new()
@@ -18,8 +25,8 @@ namespace DotNetTrainningBatch3.MVCApp.Controllers
 
         public IActionResult DashedLineChart()
         {
-            AppDbContext appDbContext = new();
-            var dataList = appDbContext.PageStatistics.ToList();
+            //AppDbContext appDbContext = new();
+            var dataList = _appDbContext.PageStatistics.ToList();
             DashedLineChartResponseModel dashedLineChartResponse = new();
 
             var sectionDurationsList = dataList.Select(x => x.SessionDuration).ToList();
@@ -43,8 +50,7 @@ namespace DotNetTrainningBatch3.MVCApp.Controllers
 
         public IActionResult RadarChart()
         {
-            AppDbContext context = new();
-            var radarDataList = context.Radars.ToList();
+            var radarDataList = _appDbContext.Radars.ToList();
             ApexChartResponseModel responseModel = new()
             {
                 Series = radarDataList.Select(x => x.Series).ToList(),

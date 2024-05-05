@@ -1,4 +1,15 @@
+using DotNetTrainningBatch3.MVCApp;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(option =>
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),
+    ServiceLifetime.Transient,
+    ServiceLifetime.Transient
+);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

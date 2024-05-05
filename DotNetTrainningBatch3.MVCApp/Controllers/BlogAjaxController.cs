@@ -8,9 +8,9 @@ namespace DotNetTrainningBatch3.MVCApp.Controllers
     {
         private readonly AppDbContext _appDbContext;
 
-        public BlogAjaxController()
+        public BlogAjaxController(AppDbContext appDbContext)
         {
-            _appDbContext = new AppDbContext();
+            _appDbContext =  appDbContext;
         }
 
 

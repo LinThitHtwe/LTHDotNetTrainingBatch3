@@ -7,9 +7,9 @@ namespace DotNetTrainningBatch3.MVCApp.Controllers
     {
         private AppDbContext _appDbContext;
 
-        public PaginateBlogController()
+        public PaginateBlogController(AppDbContext appDbContext)
         {
-            _appDbContext = new AppDbContext();
+            _appDbContext = appDbContext;
         }
 
         [ActionName("Index")]
