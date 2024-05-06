@@ -15,7 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
 builder.Services.AddScoped(n=>new AdoDotNetService(connectionString: builder.Configuration.GetConnectionString("DefaultConnection")!));
 builder.Services.AddScoped(n => new DapperService(connectionString: builder.Configuration.GetConnectionString("DefaultConnection")!));
-
+builder.Services.AddSingleton<CommonService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
