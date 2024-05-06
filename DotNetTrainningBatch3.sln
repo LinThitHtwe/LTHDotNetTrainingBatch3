@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainningBatch3.WebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainningBatch3.BirdWebApi", "DotNetTrainningBatch3.BirdWebApi\DotNetTrainningBatch3.BirdWebApi.csproj", "{C94D7380-35C7-4E34-8F61-8B23303B7310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainningBatch3.MVCApp", "DotNetTrainningBatch3.MVCApp\DotNetTrainningBatch3.MVCApp.csproj", "{23BB2607-FE03-45F8-B379-6EA8CA1F8B4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainningBatch3.MVCApp", "DotNetTrainningBatch3.MVCApp\DotNetTrainningBatch3.MVCApp.csproj", "{23BB2607-FE03-45F8-B379-6EA8CA1F8B4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainningBatch3.Shared", "DotNetTrainningBatch3.Shared\DotNetTrainningBatch3.Shared.csproj", "{5D8DEAD1-FE39-492F-846B-E20AAAA65B9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{23BB2607-FE03-45F8-B379-6EA8CA1F8B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23BB2607-FE03-45F8-B379-6EA8CA1F8B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23BB2607-FE03-45F8-B379-6EA8CA1F8B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D8DEAD1-FE39-492F-846B-E20AAAA65B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8DEAD1-FE39-492F-846B-E20AAAA65B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8DEAD1-FE39-492F-846B-E20AAAA65B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8DEAD1-FE39-492F-846B-E20AAAA65B9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
