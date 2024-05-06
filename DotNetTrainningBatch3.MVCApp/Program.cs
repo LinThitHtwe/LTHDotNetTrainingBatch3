@@ -1,5 +1,7 @@
 using DotNetTrainningBatch3.MVCApp;
+using DotNetTrainningBatch3.Shared;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 
@@ -10,6 +12,8 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     ServiceLifetime.Transient,
     ServiceLifetime.Transient
 );
+
+builder.Services.AddScoped(n=>new AdoDotNetService(connectionString: builder.Configuration.GetConnectionString("DefaultConnection")!));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -8,9 +8,9 @@ namespace DotNetTrainningBatch3.Shared
     public class AdoDotNetService
     {
         private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
-        public AdoDotNetService(SqlConnectionStringBuilder sqlConnectionStringBuilder)
+        public AdoDotNetService(string connectionString)
         {
-            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+            _sqlConnectionStringBuilder = new SqlConnectionStringBuilder(connectionString);
         }
         public List<T> Query<T>(string query, List<SqlParameter>? parameters = null)
         {

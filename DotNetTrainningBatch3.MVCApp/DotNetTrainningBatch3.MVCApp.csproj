@@ -12,5 +12,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 </ItemGroup>
+	
+<ItemGroup>
+  <ProjectReference Include="..\DotNetTrainningBatch3.Shared\DotNetTrainningBatch3.Shared.csproj" />
+</ItemGroup>
 
 </Project>
