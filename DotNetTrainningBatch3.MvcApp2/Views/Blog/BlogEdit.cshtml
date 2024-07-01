@@ -1,0 +1,18 @@
+﻿@model BlogModel
+<form action="/Blog/Update/@Model.id" method="post">
+    <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="text" class="form-control" id="BlogTitle" name="title" value="@Model.title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="text" class="form-control" id="BlogAuthor" name="author" value="@Model.author">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="text" class="form-control" id="BlogContent" name="content" value="@Model.content">
+    </div>
+
+    <a href="/Blog" class="btn btn-dark">Back</a>
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
