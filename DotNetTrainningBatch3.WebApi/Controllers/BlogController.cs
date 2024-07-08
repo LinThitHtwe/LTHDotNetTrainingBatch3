@@ -9,16 +9,18 @@ namespace DotNetTrainningBatch3.WebApi.Controllers
     public class BlogController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-
-        public BlogController()
+        private readonly ILogger<BlogController> _logger;
+        public BlogController(ILogger<BlogController> logger)
         {
             _appDbContext = new AppDbContext();
+            _logger = logger;
         }
 
         [HttpGet]
         public IActionResult GetAllBlogs()
         {
             List<Blog> blogs = _appDbContext.Blogs.OrderByDescending(blog => blog.Id).ToList();
+            _logger.LogInformation($"Blogs list count - {blogs.Count}");
             return Ok(blogs);
         }
 
