@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainningBatch3.MvcAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainningBatch3.MinimalApi", "DotNetTrainningBatch3.MinimalApi\DotNetTrainningBatch3.MinimalApi.csproj", "{3985EEA7-AFFB-4EF0-8F4A-4D343F185A5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainningBatch3.ConsoleApp2", "DotNetTrainningBatch3.ConsoleApp2\DotNetTrainningBatch3.ConsoleApp2.csproj", "{491BD060-522C-4EC8-B7B3-656E1EFAB48A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{3985EEA7-AFFB-4EF0-8F4A-4D343F185A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3985EEA7-AFFB-4EF0-8F4A-4D343F185A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3985EEA7-AFFB-4EF0-8F4A-4D343F185A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{491BD060-522C-4EC8-B7B3-656E1EFAB48A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491BD060-522C-4EC8-B7B3-656E1EFAB48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491BD060-522C-4EC8-B7B3-656E1EFAB48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491BD060-522C-4EC8-B7B3-656E1EFAB48A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
