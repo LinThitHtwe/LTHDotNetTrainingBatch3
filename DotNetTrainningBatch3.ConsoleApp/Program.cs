@@ -4,6 +4,7 @@ using DotNetTrainningBatch3.ConsoleApp.EFCoreExamples;
 using DotNetTrainningBatch3.ConsoleApp.HttpClientExamples;
 using DotNetTrainningBatch3.ConsoleApp.RefitExamples;
 using DotNetTrainningBatch3.ConsoleApp.RestClientExamples;
+using Serilog;
 
 //AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.GetAll();
@@ -23,7 +24,7 @@ using DotNetTrainningBatch3.ConsoleApp.RestClientExamples;
 //EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Read();
 
-Console.WriteLine("Waiting for api...");
+//Console.WriteLine("Waiting for api...");
 
 
 //HttpClientExample httpClientExample = new HttpClientExample();
@@ -38,19 +39,44 @@ Console.WriteLine("Waiting for api...");
 //EFCoreExample eFCoreExample = new();
 //eFCoreExample.Generate(100);
 
-int pageSize = 3;
-AppDbContext appDbContext = new();
-int rowCount = appDbContext.Blogs.Count();
+//int pageSize = 3;
+//AppDbContext appDbContext = new();
+//int rowCount = appDbContext.Blogs.Count();
 
-int pageCount = rowCount /pageSize;
-Console.WriteLine($"Current PageCount {pageCount}");
+//int pageCount = rowCount /pageSize;
+//Console.WriteLine($"Current PageCount {pageCount}");
 
-if(rowCount % pageSize > 0)
+//if(rowCount % pageSize > 0)
+//{
+//    pageCount++;
+//}
+
+//Console.WriteLine($"Final PageCount {pageCount}");
+
+Log.Logger = new LoggerConfiguration()
+          .MinimumLevel.Debug()
+          .WriteTo.Console()
+          .WriteTo.File("logs/DotNetTrainingBatch3.ConsoleApp.log", rollingInterval: RollingInterval.Hour)
+          .CreateLogger();
+
+Log.Information("Hello, world!");
+
+int a = 10, b = 0;
+try
 {
-    pageCount++;
+    Log.Debug("Dividing {A} by {B}", a, b);
+    Console.WriteLine(a / b);
+}
+catch (Exception ex)
+{
+    Log.Error(ex, "Something went wrong");
+}
+finally
+{
+    await Log.CloseAndFlushAsync();
 }
 
-Console.WriteLine($"Final PageCount {pageCount}");
+
 
 Console.ReadKey();
 
